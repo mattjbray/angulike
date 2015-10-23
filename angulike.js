@@ -102,7 +102,8 @@
                   restrict: 'A',
                   scope: {
                       tweet: '=',
-                      tweetUrl: '='
+                      tweetUrl: '=',
+                      tweetVia: '='
                   },
                   link: function (scope, element, attrs) {
                       if (!$window.twttr) {
@@ -129,7 +130,15 @@
                               });
                               return;
                           } else {
-                              element.html('<a href="https://twitter.com/share" class="twitter-share-button" data-text="' + scope.tweet + '" data-url="' + (scope.tweetUrl || $location.absUrl()) + '">Tweet</a>');
+                              var elHtml;
+                              elHtml = '<a href="https://twitter.com/share" class="twitter-share-button"';
+                              elHtml += ' data-text="' + scope.tweet + '"';
+                              elHtml += ' data-url="' + (scope.tweetUrl || $location.absUrl()) + '"';
+                              if (angular.isDefined(scope.tweetVia)) {
+                                  elHtml += ' data-via="' + scope.tweetVia + '"';
+                              }
+                              elHtml += '>Tweet</a>';
+                              element.html(elHtml);
                               $window.twttr.widgets.load(element.parent()[0]);
                           }
                       }

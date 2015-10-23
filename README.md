@@ -63,6 +63,12 @@ To use a custom URL for the tweet button:
 <div tweet="myModel.Name" tweet-url="myModel.Url"></div>
 ```
 
+To use a custom via for the tweet button (attribute the source of a Tweet to a Twitter username):
+
+```html
+<div tweet="myModel.Name" tweet-via="myModel.TweetVia"></div>
+```
+
 ####Pinterest
 
 Create an empty div with the *pin-it* and *pin-it-image* attributes, the pin-it attribute contains the name of the model object for the 
